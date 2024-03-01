@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    const API_URL = 'http://localhost:3000';
+    const API_URL = 'https://hikariali.github.io/anime-list';
 
     // Function to check if user is logged in
     const isLoggedIn = () => {
