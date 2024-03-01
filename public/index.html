@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS -->
+    <style>
+        body {
+            padding: 20px;
+        }
+        .task-container {
+            margin-top: 20px;
+        }
+        #newsCarousel .carousel-item img {
+        max-width: 100%;
+        max-height: 500px; /* Adjust the height as needed */
+        margin: 0 auto;
+        }
+        #newsCarousel .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for caption */
+            padding: 10px;
+            color: white;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">My Anime List</h1>
+
+        <!-- User Registration Form -->
+        <div id="registrationForm" style="display: none;">
+            <h3>Register</h3>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">Username:</label>
+                    <input type="text" class="form-control" id="regUsername" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password:</label>
+                    <input type="password" class="form-control" id="regPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" class="form-control" id="regEmail" name="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+
+        <!-- User Login Form -->
+        <div id="loginForm" style="display: none;">
+            <h3>Login</h3>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">Username:</label>
+                    <input type="text" class="form-control" id="loginUsername" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" class="form-control" id="loginPassword" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+
+        <!-- Task List -->
+        <div id="taskListContainer" style="display: none;">
+            <div class="task-container">
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Rating (1-5):</label>
+                        <input type="number" class="form-control" id="rating" name="rating" min="1" max="5">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Anime</button>
+                </form>
+            </div>
+            <div class="task-container">
+                <ul id="taskList" class="list-group">
+                    <!-- Task items will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Edit Task Modal -->
+        <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="editTaskForm">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="editTitle">Title:</label>
+                                <input type="text" class="form-control" id="editTitle" name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="editDescription">Description:</label>
+                                <textarea class="form-control" id="editDescription" name="description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="editRating">Rating (1-5):</label>
+                                <input type="number" class="form-control" id="editRating" name="rating" min="1" max="5">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons for Register, Login, and Logout -->
+        <div class="mt-3">
+            <button id="registerLink" class="btn btn-primary">Register</button>
+            <button id="loginLink" class="btn btn-primary ml-2">Login</button>
+            <button id="logoutLink" class="btn btn-danger ml-2" style="display: none;">Logout</button>
+        </div>
+
+        <!-- Anime News Section -->
+        <div id="animeNews" class="mt-3">
+            <!-- News carousel -->
+            <div id="newsCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Carousel Indicators -->
+                <ol class="carousel-indicators">
+                    <!-- Indicators will be dynamically added here -->
+                </ol>
+                <!-- Carousel Inner -->
+                <div class="carousel-inner">
+                    <!-- News items will be dynamically added here -->
+                </div>
+                <!-- Carousel Controls -->
+                <a class="carousel-control-prev" href="#newsCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#newsCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, jQuery, and your custom JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
